@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
-from load_mod_information import set_directories, load_mod_info
+from load_mod_information import data_object
 
 UNSORTED = "Unsorted"
 
@@ -95,8 +95,8 @@ class treeview(tk.Frame):
 
 def main():
     root = tk.Tk()
-    current_paths = set_directories()
-    mod_array = load_mod_info(current_paths["mod_folders"])
+    data = data_object()
+    mod_array = data.mods
     main_gui = gui(root)
     for mod_num in mod_array:
         mod = mod_array[mod_num]

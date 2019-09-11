@@ -155,9 +155,7 @@ if __name__ == "__main__":
     current_dir = os.path.abspath(os.path.dirname(__file__))
     test_mod_dir = pjoin(current_dir, "rimworld_mods/content/294100")
     data.add_mod_folder(test_mod_dir)
-    # data.load_mod_info()
     info = data.mods
-    # info = load_mod_info(data.get("mod_folders"))
     titles = sorted([(num,info[num]["title"],info[num]["version"]) for num in info],key=lambda x:x[1])
     for e in titles:
         print(e)
