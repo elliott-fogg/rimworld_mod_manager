@@ -1,0 +1,8 @@
+Categories:
+Category_1
+Category_2
+Category_3
+
+mod_id1,True,1
+mod_id2,False,0
+mod_id3,True,1
