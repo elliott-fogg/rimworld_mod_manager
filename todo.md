@@ -1,10 +1,13 @@
 # TODO
 
-## Finish setting up gui.py
+## Gui
 
-Add in pictures and description
-Add in Buttons along top
-Check picture size, make a placeholder image for when no mod is selected or no
-image is associated
+Add in Pictures and description area for mods
+Add separate page for setting filepaths through GUI (either pop-up or flip)
+Add dynamic resizing of pages, with minimum sizes
+Add ability to save profiles
+Add ability to modify order and activation of mods
 
-## Work out how to unsubscribe from a mod with the API
+## API
+
+Work out how to unsubscribe from a mod with the API
