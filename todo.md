@@ -2,6 +2,7 @@
 
 ## Gui
 
+Nail down GUI layout for Mod Page (look at XCOM2 Alternate Mod Launcher)
 Add in Pictures and description area for mods
 Add separate page for setting filepaths through GUI (either pop-up or flip)
 Add dynamic resizing of pages, with minimum sizes
