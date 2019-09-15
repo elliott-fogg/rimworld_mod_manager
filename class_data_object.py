@@ -11,7 +11,7 @@ class data_object():
         "executable": "C:/Program Files (x86)/Steam/steamapps/common/RimWorld/RimWorldWin64.exe",
         "mod_folders": ["C:/Program Files (x86)/Steam/steamapps/common/RimWorld/Mods",
             "C:/Program Files (x86)/Steam/steamapps/workshop/content/294100"],
-        "mods_config": "~/AppData/LocalLow/Ludeon Studios/Rimworld by Ludeon Studios/Config/ModsConfig.xml",
+        "mods_config": os.path.expanduser("~/AppData/LocalLow/Ludeon Studios/Rimworld by Ludeon Studios/Config/ModsConfig.xml"),
         "version": "C:/Program Files (x86)/Steam/steamapps/common/RimWorld/Version.txt"
     }
 
@@ -40,8 +40,10 @@ class data_object():
         #     self.set_default_paths()
         # self.save_paths()
         # self.check_paths()
+
         # Mod Info
         self.load_mod_info()
+        self.load_mods_config()
 
     def load_paths(self):
         config = configparser.ConfigParser()
@@ -161,6 +163,23 @@ class data_object():
                 mod_array[mod_num] = mod_info
 
         self.mods = mod_array
+
+    def load_mods_config(self):
+        print(self.paths)
+        if isfile(self.paths["mods_config"]):
+            print("Mod config exists!")
+            with open(self.paths["mods_config"],"r") as mcfile:
+                contents = mcfile.read()
+
+            active_mods_text = re.findall("<activeMods>([\s\S]*)</activeMods>",contents)[0]
+
+            self.active = []
+            for mod in re.findall("<li>(.+)</li>", active_mods_text):
+                self.active.append(mod)
+            print(self.active)
+
+        else:
+            print("File '{}' does not exist!!!".format(self.paths["mods_config"]))
 
 if __name__ == "__main__":
     data = data_object()
