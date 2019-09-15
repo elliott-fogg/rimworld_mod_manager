@@ -9,6 +9,7 @@ Enable/Disable Mod Categories
 Change mod categories
 Evaluate mod version numbers
 Save/Load Profiles
+Add/Remove, resize columns (and restrict certain columns to always remain)
 Allow Sorting via different columns
 Launch Rimworld from App
 Display Mod Descriptions and Images
