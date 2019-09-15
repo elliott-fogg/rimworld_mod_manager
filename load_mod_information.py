@@ -2,6 +2,8 @@ from os.path import join as pjoin
 from os.path import isfile, isdir
 import os, time, subprocess, re, configparser
 
+CURRENT_DIR = os.path.abspath(os.path.dirname(__file__))
+
 class data_object():
 
     default_paths = {
@@ -23,16 +25,21 @@ class data_object():
 
     def __init__(self):
         self.files = {}
-        # Paths
-        current_dir = os.path.abspath(os.path.dirname(__file__))
-        self.files["directories"] = pjoin(current_dir, "directories.ini")
-        if isfile(self.files["directories"]):
-            self.load_paths()
-        else:
-            self.set_default_paths()
-        self.save_paths()
-        self.check_paths()
+        self.files["directories"] = pjoin(CURRENT_DIR, "directories.ini")
 
+        # Temporary Code (Before manual path setting)
+        self.set_default_paths()
+        if self.paths["mod_folders"] == []:
+            self.add_mod_folder(pjoin(CURRENT_DIR,"rimworld_mods/content/291400"))
+        print(self.paths["mod_folders"])
+
+        # # Eventual code (When manual path setting has been established)
+        # if isfile(self.files["directories"]):
+        #     self.load_paths()
+        # else:
+        #     self.set_default_paths()
+        # self.save_paths()
+        # self.check_paths()
         # Mod Info
         self.load_mod_info()
 
@@ -104,6 +111,11 @@ class data_object():
         for mod_folder in self.paths["mod_folders"]:
 
             for mod_num in os.listdir(mod_folder):
+
+                # Ignore the Core folder (for now, might need for ordering later)
+                if mod_num == "Core":
+                    continue
+
                 full_path = pjoin(mod_folder, mod_num)
                 mod_about_path = pjoin(full_path, "About/About.xml")
                 if isfile(mod_about_path):

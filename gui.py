@@ -25,7 +25,7 @@ class gui(tk.Frame):
         self.button_temp1 = tk.Button(master=self.f1, text="PLACEHOLDER")
         self.button_temp1.grid(row=0, sticky=tk.W)
 
-        self.tree = treeview(master=self.f2)
+        self.tree = treeview_no_groups(master=self.f2)
         self.tree.pack()
 
         self.button_temp2 = tk.Button(master=self.f3, text="PLACEHOLDER")
@@ -34,7 +34,64 @@ class gui(tk.Frame):
         self.grid(row=0)
 
 
-class treeview(tk.Frame):
+# class treeview(tk.Frame):
+#     def __init__(self, master, data=None):
+#         tk.Frame.__init__(self, master)
+#
+#         self.vsb = ttk.Scrollbar(orient="vertical")
+#         self.hsb = ttk.Scrollbar(orient="horizontal")
+#
+#         tree = ttk.Treeview(master=self,
+#             columns=("author","version","url","order","id"),
+#             displaycolumns=("author","version","url","order","id"),
+#             yscrollcommand=self.vsb.set,
+#             xscrollcommand=self.hsb.set
+#             )
+#
+#         self.tree = tree
+#
+#         self.vsb['command'] = tree.yview
+#         self.hsb['command'] = tree.xview
+#
+#         tree.heading("#0", text="Title", anchor="w")
+#         tree.heading("author", text="Author", anchor="w")
+#         tree.heading("version", text="Version", anchor="w")
+#         tree.heading("url", text="URL", anchor="w")
+#         tree.heading("order", text="Order", anchor="e")
+#         tree.column("author", stretch=0, width=100)
+#         tree.column("version", stretch=0, width=100)
+#         tree.column("url", stretch=0, width=100)
+#         tree.column("order", stretch=0, width=100)
+#
+#         categories = ("Medieval,Spacer,Cosmetic,QoL" + "," + UNSORTED)
+#         categories = categories.split(",")
+#         for c in categories:
+#             id = tree.insert("","end",c,text=c)
+#
+#         self.tree.grid(column=0, row=0, sticky='nswe')
+#         self.vsb.grid(column=1, row=0, sticky='ns')
+#         self.hsb.grid(column=0, row=1, sticky='ew')
+#
+#         self.grid_columnconfigure(0, weight=1)
+#         self.grid_rowconfigure(0, weight=1)
+#
+#         self.test()
+#
+#     def add_entry(self, category=None, title="No Name", author=None,
+#             version=None, url=None, order=None):
+#         if category == None:
+#             category = UNSORTED
+#         id = self.tree.insert(category, "end", text=title)
+#         self.tree.set(id, "author", author)
+#         self.tree.set(id, "version", version)
+#         self.tree.set(id, "url", url)
+#         self.tree.set(id, "order", order)
+#
+#     def test(self):
+#         self.add_entry(title="Example Title", author="Example Author",
+#             version="Version_Num", url="Example URL", order="Order_Num")
+
+class treeview_no_groups(tk.Frame):
     def __init__(self, master, data=None):
         tk.Frame.__init__(self, master)
 
@@ -63,13 +120,6 @@ class treeview(tk.Frame):
         tree.column("url", stretch=0, width=100)
         tree.column("order", stretch=0, width=100)
 
-        categories = ("Medieval,Spacer,Cosmetic,QoL" + "," + UNSORTED)
-        categories = categories.split(",")
-        for c in categories:
-            id = tree.insert("","end",c,text=c)
-
-        self.add_entry(title="Example_title", author="Example_author", version="1.0", url="example_url", order=3)
-
         self.tree.grid(column=0, row=0, sticky='nswe')
         self.vsb.grid(column=1, row=0, sticky='ns')
         self.hsb.grid(column=0, row=1, sticky='ew')
@@ -77,11 +127,9 @@ class treeview(tk.Frame):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
-    def add_entry(self, category=None, title="No Name", author=None,
+    def add_entry(self, title="No Name", author=None,
             version=None, url=None, order=None):
-        if category == None:
-            category = UNSORTED
-        id = self.tree.insert(category, "end", text=title)
+        id = self.tree.insert("", "end", text=title)
         self.tree.set(id, "author", author)
         self.tree.set(id, "version", version)
         self.tree.set(id, "url", url)
