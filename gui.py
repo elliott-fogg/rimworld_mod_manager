@@ -127,6 +127,8 @@ class treeview_no_groups(tk.Frame):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
+        self.tree.bind("<Button-2>", self.middle_click)
+
     def add_entry(self, title="No Name", author=None,
             version=None, url=None, order=None):
         id = self.tree.insert("", "end", text=title)
@@ -134,6 +136,29 @@ class treeview_no_groups(tk.Frame):
         self.tree.set(id, "version", version)
         self.tree.set(id, "url", url)
         self.tree.set(id, "order", order)
+
+    def middle_click(self, event):
+        print("Middle button pressed!")
+        iid = self.tree.identify_row(event.y)
+        if iid:
+            # mouse pointer is over an item
+            self.tree.selection_set(iid)
+            values = self.tree.item(iid)["values"]
+
+            if values[3] == True:
+                values[3] = ''
+                print("'{}' deactivated".format(self.tree.item(iid)["text"]))
+            else:
+                values[3] = 1
+                print("'{}' activated".format(self.tree.item(iid)["text"]))
+            self.tree.item(iid,values=values)
+            print(self.tree.item(iid))
+
+        else:
+            # mouse pointer not over an item, no action required
+            pass
+
+
 
 # def _quit():
 #     root.quit()     # stops mainloop
