@@ -1,5 +1,21 @@
 # TODO
 
+## Completion Order
+
+Load mod information, or load example folder
+Set active mods
+Change mod order
+Enable/Disable Mod Categories
+Change mod categories
+Evaluate mod version numbers
+Save/Load Profiles
+Allow Sorting via different columns
+Launch Rimworld from App
+Display Mod Descriptions and Images
+More thorough path-searching
+Allow manually setting paths
+Add ability to switch between windows
+
 ## Gui
 
 Nail down GUI layout for Mod Page (look at XCOM2 Alternate Mod Launcher)
