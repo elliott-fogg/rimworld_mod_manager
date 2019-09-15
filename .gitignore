@@ -2,3 +2,4 @@ rimworld_mods
 demos/
 *.ini
 __pycache__/
+.git.*
