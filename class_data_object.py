@@ -183,7 +183,7 @@ class data_object():
             print("File '{}' does not exist!!!".format(self.paths["mods_config"]))
 
     def load_test_files(self):
-        self.paths["mod_folders"] = [pjoin(CURRENT_DIR,"test_dirs/mods/291400")]
+        self.paths["mod_folders"] = [pjoin(CURRENT_DIR,"test_dirs/mods/294100")]
         self.paths["mods_config"] = pjoin(CURRENT_DIR,"test_dirs/ModsConfig.xml")
 
 
