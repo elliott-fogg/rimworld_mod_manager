@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<!--
+<Operation Class="PatchOperationReplace">
+	  <xpath>*/IncidentDef[defName = "OrbitalTraderArrival"]/baseChance</xpath>
+	  <value>
+		<baseChance>18</baseChance>
+	  </value>
+	</Operation>
+-->
+<Operation Class="PatchOperationReplace">
+	  <xpath>/Defs/StorytellerDef[defName = "Cassandra"]/comps/li[@Class="StorytellerCompProperties_SingleMTB"]</xpath>
+	  <value>
+		<li Class="StorytellerCompProperties_SingleMTB">
+        	<incident>OrbitalTraderArrival</incident>
+	        <mtbDays>2</mtbDays>
+		</li>
+	  </value>
+	</Operation>
+<Operation Class="PatchOperationReplace">
+	  <xpath>/Defs/StorytellerDef[defName = "Phoebe"]/comps/li[@Class="StorytellerCompProperties_SingleMTB"]</xpath>
+	  <value>
+		<li Class="StorytellerCompProperties_SingleMTB">
+        	<incident>OrbitalTraderArrival</incident>
+	        <mtbDays>2</mtbDays>
+		</li>
+	  </value>
+	</Operation>
+<Operation Class="PatchOperationAdd">
+	  <xpath>/Defs/StorytellerDef[defName = "Randy"]/comps</xpath>
+	  <value>
+      		<li Class="StorytellerCompProperties_SingleMTB">
+        	<incident>OrbitalTraderArrival</incident>
+        	<mtbDays>2</mtbDays>
+		</li>
+	</value>
+	</Operation>
+
+</Patch>
+<!-- Default Chance v17:3 (mod:18) -->
+<!-- Default mtb v17: 13 (mod:2) -->

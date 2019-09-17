@@ -2,7 +2,7 @@
 
 ## Completion Order
 
-Load mod information, or load example folder
+Load mod information, or load example folder (and ModsConfig)
 Set active mods
 Change mod order
 Enable/Disable Mod Categories

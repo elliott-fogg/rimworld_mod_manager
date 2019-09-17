@@ -5,6 +5,14 @@ from class_data_object import data_object
 
 UNSORTED = "Unsorted"
 
+
+def find_item(dd, text):
+    try:
+        key = next(key for key, value in dd.items() if value == text)
+        return key
+    except StopIteration:
+        return None
+
 class gui(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -153,6 +161,8 @@ class treeview_no_groups(tk.Frame):
                 print("'{}' activated".format(self.tree.item(iid)["text"]))
             self.tree.item(iid,values=values)
             print(self.tree.item(iid))
+
+            print(self.tree.children)
 
         else:
             # mouse pointer not over an item, no action required

@@ -29,8 +29,9 @@ class data_object():
 
         # Temporary Code (Before manual path setting)
         self.set_default_paths()
+        self.load_mods_config()
         if self.paths["mod_folders"] == []:
-            self.add_mod_folder(pjoin(CURRENT_DIR,"rimworld_mods/content/291400"))
+            self.load_test_files()
         print(self.paths["mod_folders"])
 
         # # Eventual code (When manual path setting has been established)
@@ -43,7 +44,7 @@ class data_object():
 
         # Mod Info
         self.load_mod_info()
-        self.load_mods_config()
+
 
     def load_paths(self):
         config = configparser.ConfigParser()
@@ -181,11 +182,13 @@ class data_object():
         else:
             print("File '{}' does not exist!!!".format(self.paths["mods_config"]))
 
+    def load_test_files(self):
+        self.paths["mod_folders"] = [pjoin(CURRENT_DIR,"test_dirs/mods/291400")]
+        self.paths["mods_config"] = pjoin(CURRENT_DIR,"test_dirs/ModsConfig.xml")
+
+
 if __name__ == "__main__":
     data = data_object()
-    current_dir = os.path.abspath(os.path.dirname(__file__))
-    test_mod_dir = pjoin(current_dir, "rimworld_mods/content/294100")
-    data.add_mod_folder(test_mod_dir)
     info = data.mods
     titles = sorted([(num,info[num]["title"],info[num]["version"]) for num in info],key=lambda x:x[1])
     for e in titles:
