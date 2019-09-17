@@ -29,9 +29,9 @@ class data_object():
 
         # Temporary Code (Before manual path setting)
         self.set_default_paths()
-        self.load_mods_config()
         if self.paths["mod_folders"] == []:
             self.load_test_files()
+
         print(self.paths["mod_folders"])
 
         # # Eventual code (When manual path setting has been established)
@@ -41,6 +41,8 @@ class data_object():
         #     self.set_default_paths()
         # self.save_paths()
         # self.check_paths()
+
+        self.load_mods_config()
 
         # Mod Info
         self.load_mod_info()
@@ -180,7 +182,7 @@ class data_object():
             print(self.active)
 
         else:
-            print("File '{}' does not exist!!!".format(self.paths["mods_config"]))
+            print("Mod Config File '{}' does not exist!!!".format(self.paths["mods_config"]))
 
     def load_test_files(self):
         self.paths["mod_folders"] = [pjoin(CURRENT_DIR,"test_dirs/mods/294100")]
