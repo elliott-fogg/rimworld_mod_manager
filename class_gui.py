@@ -2,9 +2,9 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
 from class_data_object import data_object
+import webbrowser
 
 UNSORTED = "Unsorted"
-
 
 def find_item(dd, text):
     try:
@@ -16,9 +16,8 @@ def find_item(dd, text):
 class gui(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
-
-        self.img = ImageTk.PhotoImage(Image.open("preview.png"))
-
+        self.data = data_object()
+        # self.img = ImageTk.PhotoImage(Image.open("preview.png"))
         self.position()
 
     def position(self):
@@ -145,6 +144,12 @@ class treeview_no_groups(tk.Frame):
         self.tree.set(id, "url", url)
         self.tree.set(id, "order", order)
 
+    def populate_treeview_from_data(self):
+        for mod_num in master.data.mods:
+            mod = data.mods[mod_num]
+            self.tree.add_entry(title=mod["title"], author=mod["author"],
+                version=mod["version"], url=mod["url"])
+
     def middle_click(self, event):
         print("Middle button pressed!")
         iid = self.tree.identify_row(event.y)
@@ -168,7 +173,16 @@ class treeview_no_groups(tk.Frame):
             # mouse pointer not over an item, no action required
             pass
 
+    def set_active(self, iid):
+        # If not active, set to len(active) + 1
+        # If active, set to inactive and relabel all active
+        pass
 
+    # def renumber_active(self):
+
+def open_steam_url(): #TEMPORARY
+    # webbrowser.open_new(steam_url)
+    webbrowser.open_new('steam://url/CommunityFilePage/708455313')
 
 # def _quit():
 #     root.quit()     # stops mainloop
@@ -188,4 +202,5 @@ def main():
     root.mainloop()
 
 if __name__=="__main__":
-    main()
+    open_steam_url()
+    # main()

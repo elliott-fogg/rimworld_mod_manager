@@ -34,6 +34,8 @@ class data_object():
 
         print(self.paths["mod_folders"])
 
+        self.active = []
+
         # # Eventual code (When manual path setting has been established)
         # if isfile(self.files["directories"]):
         #     self.load_paths()
@@ -161,11 +163,25 @@ class data_object():
                 else:
                     mod_info["version"] = "?"
 
+                if "/Steam/" in full_path:
+                    mod_info["steam"] = True
+                    try:
+                        with open(full_path + "About/PublishedFileId.txt", "r") as f:
+                            fileId = f.read()
+                        mod_info["steam_url"] = "steam://url/CommunityFilePage/" + fileId
+                    except:
+                        mod_info["steam_url"] = ""
+                else:
+                    mod_info["steam"] = False
+                    mod_info["steam_url"] = ""
+
                 mod_info["full_path"] = full_path
 
                 mod_array[mod_num] = mod_info
 
         self.mods = mod_array
+        for key in mod_info:
+            print(key, mod_info[key])
 
     def load_mods_config(self):
         print(self.paths)
@@ -187,6 +203,10 @@ class data_object():
     def load_test_files(self):
         self.paths["mod_folders"] = [pjoin(CURRENT_DIR,"test_dirs/mods/294100")]
         self.paths["mods_config"] = pjoin(CURRENT_DIR,"test_dirs/ModsConfig.xml")
+
+
+# List of ("Name", "iid")
+
 
 
 if __name__ == "__main__":

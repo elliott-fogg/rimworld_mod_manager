@@ -5,9 +5,8 @@ from class_gui import gui
 
 if __name__ == '__main__':
     root = tk.Tk()
-    data = data_object()
     main_gui = gui(root)
-    for mod_num in data.mods:
+    for mod_num in main_gui.data.mods:
         mod = data.mods[mod_num]
         main_gui.tree.add_entry(title=mod["title"], author=mod["author"],
             version=mod["version"], url=mod["url"])
