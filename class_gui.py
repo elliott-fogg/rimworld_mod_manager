@@ -145,9 +145,10 @@ class treeview_no_groups(tk.Frame):
         self.tree.set(id, "order", order)
 
     def populate_treeview_from_data(self):
-        for mod_num in master.data.mods:
-            mod = data.mods[mod_num]
-            self.tree.add_entry(title=mod["title"], author=mod["author"],
+        mod_data = self.master.master.data.mods
+        for mod_num in mod_data:
+            mod = mod_data[mod_num]
+            self.add_entry(title=mod["title"], author=mod["author"],
                 version=mod["version"], url=mod["url"])
 
     def middle_click(self, event):
